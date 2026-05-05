@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js",
+    "dev": "node apiWrapper.js",
     "test": "node test.js",
     "demo": "node demo.js",
     "demo:fast": "node demo.js --fast"
@@ -21,6 +21,8 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0",
-    "dotenv": "^16.3.1"
+    "cors": "^2.8.6",
+    "dotenv": "^16.3.1",
+    "express": "^5.2.1"
   }
 }
