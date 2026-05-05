@@ -81,7 +81,7 @@ node index.js memory
 | `decisionEngine.js` | Predictive + reactive decision making | ✅ Complete |
 | `transitionEngine.js` | Human-like persona transitions | ✅ Complete |
 | `explainEngine.js` | Explainable AI reports | ✅ Complete |
-| `llmEngine.js` | OpenAI GPT-4o-mini integration | ✅ Complete (fallback ready) |
+| `llmEngine.js` | Multi-LLM (Groq + Gemini) engine | ✅ Complete (fallback ready) |
 | `conflictResolver.js` | Scoring & persona selection | ✅ Complete |
 | `executor.js` | Executes persona actions | ✅ Complete (mock execution) |
 | `memoryManager.js` | Decision logging & analysis | ✅ Complete |
@@ -126,7 +126,7 @@ if (context.location === "gym") {
 ### AI-Enhanced (30-40% of decisions)
 
 ```javascript
-// Uses GPT-4o-mini for nuanced decisions
+// Uses Groq (Llama 3 70B) for ultra-fast nuance, with Gemini fallback
 const aiSuggestion = await askLLM(context);
 // Result: {persona: "calm", score: 0.85, reasoning: "..."}
 ```
@@ -261,13 +261,17 @@ node index.js test
 # ✅ ALL TESTS PASSED!
 ```
 
-## 🌐 LLM Integration (OpenAI)
+## 🌐 Multi-LLM Integration (Groq + Gemini)
 
-### Enable GPT-4o-mini
+The system is completely vendor-agnostic and features zero lock-in, free APIs, and auto-fallback.
 
-1. Set environment variable:
+### Enable LLM Mode
+
+1. Set environment variables in `.env`:
 ```bash
-export OPENAI_API_KEY=sk-your-key-here
+LLM_PROVIDER=auto  # Tries Groq first, falls back to Gemini
+GROQ_API_KEY=your-groq-key
+GEMINI_API_KEY=your-gemini-key
 ```
 
 2. Restart engine:
@@ -275,9 +279,9 @@ export OPENAI_API_KEY=sk-your-key-here
 node index.js start
 ```
 
-### Without API Key
+### Without API Keys
 
-The engine automatically falls back to rule-based decisions. No errors, fully functional.
+The engine automatically falls back to rule-based decisions if no keys are provided or if all APIs drop. No errors, fully functional.
 
 ### Custom LLM Prompt
 

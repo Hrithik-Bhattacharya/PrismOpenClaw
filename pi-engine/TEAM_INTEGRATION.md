@@ -40,11 +40,13 @@ Open `.env` and replace the placeholder values:
 
 ```env
 # ─────────────────────────────────────────────────────────────────
-# 🔑 OPENAI — Used by M1 (Pi Engine) for AI-enhanced decisions
-# Get it at: https://platform.openai.com/api-keys
-# ⚠️  Optional — engine falls back to rules if not set
+# 🧠 MULTI-LLM PROVIDER (Groq + Gemini)
+# Used by M1 (Pi Engine) for ultra-fast, zero vendor lock-in decisions.
+# LLM_PROVIDER can be 'groq', 'gemini', or 'auto'
 # ─────────────────────────────────────────────────────────────────
-OPENAI_API_KEY=sk-your-openai-key-here
+LLM_PROVIDER=auto
+GROQ_API_KEY=your-groq-key-here
+GEMINI_API_KEY=your-gemini-key-here
 
 # ─────────────────────────────────────────────────────────────────
 # 🤖 TELEGRAM — Used by M4 (Channels/UX) to send notifications
@@ -80,7 +82,8 @@ LOG_LEVEL=info
 
 | Key | Who Gets It | Who Uses It | Required? |
 |-----|------------|-------------|-----------|
-| `OPENAI_API_KEY` | M1 team gets from OpenAI | M1 (llmEngine.js) | Optional |
+| `GROQ_API_KEY` | M1 gets from Groq | M1 (`llmEngine.js`) | Optional but recommended |
+| `GEMINI_API_KEY` | M1 gets from Google | M1 (`llmEngine.js`) | Optional but recommended |
 | `TELEGRAM_BOT_TOKEN` | M4 team creates via @BotFather | M4 (Telegram bot) | Required for M4 |
 | `TELEGRAM_CHAT_ID` | M4 team from @userinfobot | M4 (send messages) | Required for M4 |
 | `M3_API_TOKEN` | M3 team generates | M1 (contextReader.js) | Required for M3 |

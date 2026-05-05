@@ -1,113 +1,90 @@
-const axios = require('axios');
-require('dotenv').config();
+const axios = require("axios");
 
-/**
- * LLM Engine - Integrates with OpenAI for AI-powered decisions
- * Uses GPT-4o-mini for cost-effective persona suggestions
- */
+const PROVIDER = process.env.LLM_PROVIDER || "auto";
 
 async function askLLM(context) {
-    const apiKey = process.env.OPENAI_API_KEY;
+    console.log(`[LLM] Provider: ${PROVIDER}`);
+    
+    if (PROVIDER === "groq") return askGroq(context);
+    if (PROVIDER === "gemini") return askGemini(context);
 
-    // Fallback for mock mode when API key isn't set
-    if (!apiKey) {
-        console.log("⚠️  No OpenAI API key found. Using mock LLM response");
-        return generateMockLLMResponse(context);
-    }
-
+    // AUTO FALLBACK
     try {
-        console.log("🤖 Querying LLM for persona suggestion...");
-
-        const systemPrompt = `You are an intelligent persona decision system. Analyze the user's context and suggest the best persona to adopt.
-
-Available personas: work, fitness, calm, creative, social, learning, productivity, relaxation, focus.
-
-Return ONLY valid JSON (no markdown, no explanations):
-{
-  "persona": "persona_name",
-  "score": 0.0-1.0,
-  "reasoning": "brief explanation"
-}`;
-
-        const response = await axios.post(
-            "https://api.openai.com/v1/chat/completions",
-            {
-                model: "gpt-4o-mini",
-                messages: [
-                    {
-                        role: "system",
-                        content: systemPrompt
-                    },
-                    {
-                        role: "user",
-                        content: `Current context: ${JSON.stringify(context)}`
-                    }
-                ],
-                temperature: 0.7,
-                max_tokens: 200
-            },
-            {
-                headers: {
-                    "Authorization": `Bearer ${apiKey}`,
-                    "Content-Type": "application/json"
-                }
-            }
-        );
-
-        const text = response.data.choices[0].message.content.trim();
-        
-        // Parse JSON response
-        const jsonMatch = text.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) {
-            throw new Error("Invalid JSON response from LLM");
-        }
-
-        const result = JSON.parse(jsonMatch[0]);
-        console.log("✅ LLM Response:", result);
-        return result;
-
-    } catch (err) {
-        console.error("❌ LLM API Error:", err.message);
-        console.log("🔄 Fallback to mock response");
-        return generateMockLLMResponse(context);
+        return await askGroq(context);
+    } catch (e) {
+        console.log("⚠️ [LLM] Groq failed → switching to Gemini");
+        return await askGemini(context);
     }
 }
 
-/**
- * Mock LLM response for testing without API key
- */
-function generateMockLLMResponse(context) {
-    const mockResponses = {
-        "meeting": { persona: "work", score: 0.95, reasoning: "Meeting detected in calendar" },
-        "gym": { persona: "fitness", score: 0.9, reasoning: "Location is gym" },
-        "high_stress": { persona: "calm", score: 0.88, reasoning: "Stress level is high" },
-        "creative": { persona: "creative", score: 0.85, reasoning: "Time for creative work" },
-        "social": { persona: "social", score: 0.8, reasoning: "Social activity detected" },
-        "learning": { persona: "learning", score: 0.82, reasoning: "Learning time" },
-        "idle": { persona: "relaxation", score: 0.75, reasoning: "No activity detected" }
-    };
+// ================= GROQ =================
+async function askGroq(context) {
+    if (!process.env.GROQ_API_KEY) throw new Error("GROQ_API_KEY not set");
+    const response = await axios.post(
+        "https://api.groq.com/openai/v1/chat/completions",
+        {
+            model: "llama3-70b-8192",
+            messages: [
+                {
+                    role: "system",
+                    content: "You are an AI deciding the best persona. Return ONLY valid JSON: {\"persona\": \"name\", \"score\": 0.9, \"reason\": \"explanation\"}",
+                },
+                {
+                    role: "user",
+                    content: JSON.stringify(context),
+                },
+            ],
+            temperature: 0.3,
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+                "Content-Type": "application/json",
+            },
+        }
+    );
 
-    // Smart heuristic selection
-    if (context.calendar_event && context.calendar_event !== "none") {
-        return mockResponses["meeting"];
-    }
-    if (context.location === "gym") {
-        return mockResponses["gym"];
-    }
-    if (context.stress > 0.6) {
-        return mockResponses["high_stress"];
-    }
-    if (context.activity === "creative_work") {
-        return mockResponses["creative"];
-    }
-    if (context.activity === "social") {
-        return mockResponses["social"];
-    }
-    if (context.activity === "learning") {
-        return mockResponses["learning"];
-    }
+    const text = response.data.choices[0].message.content;
+    return safeParse(text);
+}
 
-    return mockResponses["idle"];
+// ================= GEMINI =================
+async function askGemini(context) {
+    if (!process.env.GEMINI_API_KEY) throw new Error("GEMINI_API_KEY not set");
+    const response = await axios.post(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY}`,
+        {
+            contents: [
+                {
+                    parts: [
+                        {
+                            text: `You are an AI deciding the best persona. Return ONLY valid JSON: {"persona": "name", "score": 0.9, "reason": "explanation"}. Context: ${JSON.stringify(context)}`,
+                        },
+                    ],
+                },
+            ],
+        }
+    );
+
+    const text = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+    return safeParse(text);
+}
+
+// ================= SAFE PARSER =================
+function safeParse(text) {
+    try {
+        // Remove code block if model returns ```json
+        const cleaned = text.replace(/```json|```/g, "").trim();
+        return JSON.parse(cleaned);
+    } catch (err) {
+        console.log("⚠️ [LLM] Parse failed, fallback used", err.message);
+
+        return {
+            persona: "default",
+            score: 0.5,
+            reason: "fallback",
+        };
+    }
 }
 
 module.exports = { askLLM };
