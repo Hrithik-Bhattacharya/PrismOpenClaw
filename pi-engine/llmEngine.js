@@ -23,7 +23,7 @@ async function askGroq(context) {
     const response = await axios.post(
         "https://api.groq.com/openai/v1/chat/completions",
         {
-            model: "llama3-70b-8192",
+            model: "llama-3.3-70b-versatile",
             messages: [
                 {
                     role: "system",
@@ -52,7 +52,7 @@ async function askGroq(context) {
 async function askGemini(context) {
     if (!process.env.GEMINI_API_KEY) throw new Error("GEMINI_API_KEY not set");
     const response = await axios.post(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
         {
             contents: [
                 {
