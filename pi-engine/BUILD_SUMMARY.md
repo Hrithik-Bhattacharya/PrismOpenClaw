@@ -1,35 +1,42 @@
-# 🎉 PI ENGINE - COMPLETE BUILD SUMMARY
+# 🎉 PI ENGINE - COMPLETE BUILD SUMMARY (v2)
 
 ## ✅ MISSION ACCOMPLISHED
 
 You now have a **complete, production-ready PI (Persona Intelligence) Engine** that:
 
+✅ **Predictive Intelligence** - Acts *before* events happen (e.g. prepares for a meeting 15 mins prior).
+✅ **Confidence System** - Scores context signals by reliability so uncertain data doesn't derail decisions.
+✅ **Transition Engine** - Human-like gradual switches between personas to prevent jarring hard-cuts.
+✅ **Explainable AI** - Generates clear, judge-friendly decision reports explaining exactly *why* a persona was chosen.
+✅ **Demo Mode** - Scripted 9-scene demo (`npm run demo`) to showcase all features reliably.
 ✅ **Runs independently** - No external dependencies required (except axios for LLM)
 ✅ **Works with mock data** - Fully functional for testing
 ✅ **Hybrid decision making** - Combines rules + AI (GPT-4o-mini)
 ✅ **Complete memory system** - Logs decisions, generates stats
 ✅ **11 built-in personas** - Work, fitness, calm, creative, social, learning, productivity, relaxation, focus, power saver, sleep
-✅ **Full test suite** - 12 tests, 100% passing
 ✅ **Production ready** - Comprehensive documentation, error handling, logging
-✅ **Easy integration** - Clear integration points for M2, M3, M4
 
 ---
 
 ## 📦 What Was Built
 
-### Core Modules (9 files)
+### Core Modules (13 files)
 
 | File | Purpose | Status |
 |------|---------|--------|
 | `index.js` | Main entry point & CLI | ✅ Complete |
 | `heartbeat.js` | Main orchestration loop | ✅ Complete |
 | `contextReader.js` | Environmental data reading | ✅ Complete (mock) |
+| `confidenceEngine.js` | Context signal reliability scoring | ✅ Complete |
 | `decisionEngine.js` | Hybrid rule + AI decision making | ✅ Complete |
+| `transitionEngine.js` | Persona transition paths | ✅ Complete |
+| `explainEngine.js` | Human-readable decision reports | ✅ Complete |
 | `llmEngine.js` | OpenAI GPT-4o-mini integration | ✅ Complete |
 | `conflictResolver.js` | Weighted scoring system | ✅ Complete |
 | `executor.js` | Persona action execution | ✅ Complete (mock) |
 | `memoryManager.js` | Decision logging & statistics | ✅ Complete |
 | `personaManager.js` | Persona definitions & management | ✅ Complete |
+| `demo.js` | Scripted demo runner | ✅ Complete |
 
 ### Configuration Files (3 files)
 
@@ -52,13 +59,14 @@ You now have a **complete, production-ready PI (Persona Intelligence) Engine** t
 |------|---------|--------|
 | `test.js` | Comprehensive test suite (12 tests) | ✅ 100% passing |
 
-### Documentation (4 files)
+### Documentation (5 files)
 
 | File | Purpose | Status |
 |------|---------|--------|
-| `README.md` | Complete user guide & reference | ✅ 5,000+ words |
+| `README.md` | Complete user guide & reference | ✅ Updated for v2 |
 | `DEPLOYMENT.md` | Integration & deployment guide | ✅ Complete |
 | `QUICK_REFERENCE.md` | API & command reference | ✅ Complete |
+| `TEAM_INTEGRATION.md` | **Teammate onboarding — API keys, contracts, who does what** | ✅ NEW |
 | `BUILD_SUMMARY.md` | This file | ✅ You're reading it |
 
 ### Dependencies (2 packages)

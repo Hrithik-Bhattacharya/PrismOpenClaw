@@ -1,16 +1,17 @@
-# 🧠 PI ENGINE - Persona Intelligence
+# 🧠 PI ENGINE - Persona Intelligence (v2)
 
-A **complete, independent, production-ready** Persona Intelligence Engine with hybrid rule-based + AI decision making.
+A **complete, independent, production-ready** Persona Intelligence Engine with hybrid rule-based + AI decision making, predictive intelligence, and confidence scoring.
 
 ## ✨ What It Does
 
 The PI Engine continuously monitors your environment and automatically switches between optimal "personas" (modes) to maximize productivity, comfort, and well-being.
 
-**Example workflow:**
-- 9:00 AM → Calendar shows "Meeting" → Switches to **Work Mode** (focus, notifications muted)
-- 5:30 PM → Location changes to "Gym" → Switches to **Fitness Mode** (activity tracking, upbeat music)
-- 8:00 PM → Stress detected → Switches to **Calm Mode** (meditation, soothing content)
-- 11:00 PM → Time of night → Switches to **Sleep Mode** (complete silence, night filter)
+**Example workflow (v2 features highlighted):**
+- 8:45 AM → 🔮 **Predictive:** Meeting in 15 mins → **Productivity Mode** (ramps up focus early)
+- 9:00 AM → 📅 **Reactive:** Meeting starts → **Work Mode**
+- 5:30 PM → 📡 **Confidence:** GPS says Gym (90% confident) → **Fitness Mode**
+- 8:00 PM → 🔄 **Transition:** Stress detected → **Calm Mode** (switches gradually to prevent jarring experience)
+- 11:00 PM → 🧠 **Explainable AI:** Switches to **Sleep Mode** and explains exactly *why* (time + location).
 
 ## 🚀 Quick Start
 
@@ -26,6 +27,9 @@ npm install
 ```bash
 # Start heartbeat loop
 node index.js start
+
+# Run the 9-scene v2 demo
+npm run demo
 
 # Check status
 node index.js status
@@ -73,12 +77,16 @@ node index.js memory
 |--------|---------|--------|
 | `heartbeat.js` | Main orchestration loop | ✅ Complete |
 | `contextReader.js` | Reads environmental data | ✅ Complete (mock data) |
-| `decisionEngine.js` | Rule + AI decision making | ✅ Complete |
+| `confidenceEngine.js` | Scores signal reliability | ✅ Complete |
+| `decisionEngine.js` | Predictive + reactive decision making | ✅ Complete |
+| `transitionEngine.js` | Human-like persona transitions | ✅ Complete |
+| `explainEngine.js` | Explainable AI reports | ✅ Complete |
 | `llmEngine.js` | OpenAI GPT-4o-mini integration | ✅ Complete (fallback ready) |
 | `conflictResolver.js` | Scoring & persona selection | ✅ Complete |
 | `executor.js` | Executes persona actions | ✅ Complete (mock execution) |
 | `memoryManager.js` | Decision logging & analysis | ✅ Complete |
 | `personaManager.js` | Persona definitions | ✅ Complete (11 built-in) |
+| `demo.js` | 9-scene full demo runner | ✅ Complete |
 
 ## 🎭 Available Personas
 
@@ -390,10 +398,10 @@ await sendTelegramNotification(persona);
 
 ## 📚 Documentation
 
-- [Architecture](./docs/ARCHITECTURE.md) - Detailed system design
-- [API Reference](./docs/API.md) - Module APIs
-- [Configuration](./docs/CONFIG.md) - Tuning guide
-- [Troubleshooting](./docs/TROUBLESHOOTING.md) - Common issues
+- [TEAM_INTEGRATION.md](./TEAM_INTEGRATION.md) — **Start here if you're a teammate** (API keys, contracts, who edits what)
+- [DEPLOYMENT.md](./DEPLOYMENT.md) - Integration & deployment guide
+- [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) - API & command reference
+- [BUILD_SUMMARY.md](./BUILD_SUMMARY.md) - Full build summary & architecture
 
 ## 🐛 Debugging
 

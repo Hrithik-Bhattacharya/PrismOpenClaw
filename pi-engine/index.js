@@ -15,14 +15,14 @@ const { getMemorySummary } = require('./memoryManager');
 
 console.log(`
 ╔══════════════════════════════════════════════════════════════════╗
-║                   🧠 PI ENGINE v1.0.0                            ║
-║             Persona Intelligence - Full Build                    ║
+║                   🧠 PI ENGINE v2.0.0                            ║
+║             Persona Intelligence — Full Build v2                 ║
 ║                                                                  ║
-║  ✅ Independent build with mock data                             ║
-║  ✅ Ready for M2, M3, M4 integration                              ║
-║  ✅ Full decision engine & memory system                          ║
-║  ✅ LLM-enhanced decision making                                  ║
-║  ✅ Complete heartbeat loop                                       ║
+║  ✅ Predictive intelligence (acts BEFORE events)                  ║
+║  ✅ Confidence-aware signal scoring                               ║
+║  ✅ Human-like gradual transitions                                ║
+║  ✅ Explainable AI decisions                                      ║
+║  ✅ Full heartbeat loop + LLM fallback                           ║
 ╚══════════════════════════════════════════════════════════════════╝
 `);
 
@@ -35,7 +35,8 @@ const commands = {
     "status": () => console.log(getHeartbeatStatus()),
     "personas": listPersonas,
     "memory": getMemorySummary,
-    "test": runTests
+    "test": runTests,
+    "demo": () => require('./demo'),
 };
 
 // ============ COMMAND LINE PARSING ============
