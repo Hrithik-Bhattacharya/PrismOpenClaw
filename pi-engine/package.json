@@ -1,0 +1,24 @@
+{
+  "name": "pi-engine",
+  "version": "1.0.0",
+  "description": "Persona Intelligence Engine - Hybrid Rule-Based + AI Decision Making System",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "persona",
+    "ai",
+    "decision-engine",
+    "intelligence",
+    "hybrid"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  }
+}

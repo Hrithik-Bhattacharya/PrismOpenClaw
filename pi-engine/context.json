@@ -1,0 +1,8 @@
+{
+  "location": "test_location",
+  "calendar_event": "test_event",
+  "stress": 0.5,
+  "battery": 50,
+  "notifications": 0,
+  "activity": "testing"
+}

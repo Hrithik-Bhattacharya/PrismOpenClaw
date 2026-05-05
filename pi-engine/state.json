@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "status": "initialized",
+  "currentPersona": null,
+  "lastPersona": null,
+  "decisionCount": 0,
+  "uptime": 0,
+  "lastUpdated": "2024-01-01T00:00:00Z",
+  "systemHealth": {
+    "cpuUsage": 0,
+    "memoryUsage": 0,
+    "lastCheck": "2024-01-01T00:00:00Z"
+  },
+  "features": {
+    "contextReading": true,
+    "decisionEngine": true,
+    "llmIntegration": false,
+    "memoryManagement": true,
+    "executorReady": true
+  },
+  "configuration": {
+    "heartbeatInterval": 10000,
+    "memoryEnabled": true,
+    "llmEnabled": false,
+    "debugMode": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "totalEntries": 1,
+  "personaFrequency": {
+    "work": 1
+  },
+  "topPersonas": [
+    {
+      "persona": "work",
+      "frequency": 1,
+      "percentage": "100.0"
+    }
+  ],
+  "averageConfidence": "81.8",
+  "dateRange": {
+    "first": "2026-05-05T13:26:34.691Z",
+    "last": "2026-05-05T13:26:34.691Z"
+  }
+}
