@@ -2220,5 +2220,60 @@
     "notifications": 2,
     "activity": "exercising",
     "timestamp": "2026-05-07T18:31:04.576298"
+  },
+  {
+    "location": "home",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 849,
+    "stress": 0.13,
+    "battery": 85,
+    "notifications": 2,
+    "activity": "idle",
+    "timestamp": "2026-05-07T19:20:26.678403"
+  },
+  {
+    "location": "home",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 848,
+    "stress": 0.1,
+    "battery": 85,
+    "notifications": 0,
+    "activity": "idle",
+    "timestamp": "2026-05-07T19:21:26.680306"
+  },
+  {
+    "location": "home",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 842,
+    "stress": 0.12,
+    "battery": 85,
+    "notifications": 1,
+    "activity": "idle",
+    "timestamp": "2026-05-07T19:27:50.190166"
+  },
+  {
+    "location": "home",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 841,
+    "stress": 0.1,
+    "battery": 85,
+    "notifications": 0,
+    "activity": "idle",
+    "timestamp": "2026-05-07T19:28:50.189597"
+  },
+  {
+    "location": "unknown",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 840,
+    "stress": 0.1,
+    "battery": 85,
+    "notifications": 0,
+    "activity": "idle",
+    "timestamp": "2026-05-07T19:29:50.195608"
   }
 ]
