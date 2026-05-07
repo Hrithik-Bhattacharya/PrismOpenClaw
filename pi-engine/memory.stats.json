@@ -1,18 +1,42 @@
 {
-  "totalEntries": 1,
+  "totalEntries": 12,
   "personaFrequency": {
-    "work": 1
+    "work": 5,
+    "productivity": 3,
+    "fitness": 1,
+    "calm": 1,
+    "relaxation": 2
   },
   "topPersonas": [
     {
       "persona": "work",
+      "frequency": 5,
+      "percentage": "41.7"
+    },
+    {
+      "persona": "productivity",
+      "frequency": 3,
+      "percentage": "25.0"
+    },
+    {
+      "persona": "relaxation",
+      "frequency": 2,
+      "percentage": "16.7"
+    },
+    {
+      "persona": "fitness",
       "frequency": 1,
-      "percentage": "100.0"
+      "percentage": "8.3"
+    },
+    {
+      "persona": "calm",
+      "frequency": 1,
+      "percentage": "8.3"
     }
   ],
-  "averageConfidence": "81.8",
+  "averageConfidence": "78.3",
   "dateRange": {
     "first": "2026-05-05T13:26:34.691Z",
-    "last": "2026-05-05T13:26:34.691Z"
+    "last": "2026-05-07T13:38:40.087Z"
   }
 }

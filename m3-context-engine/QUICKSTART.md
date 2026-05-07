@@ -237,7 +237,7 @@ PREDICTION_ADVANCE_MINUTES=15
 
 ### For Development
 1. Review `README.md` for full documentation
-2. Check `.kiro/specs/m3-context-engine/` for requirements and design
+2. Check `TEAM_INTEGRATION.md` in pi-engine for integration specs and design
 3. See `pi-engine/TEAM_INTEGRATION.md` for M1 integration details
 
 ---

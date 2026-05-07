@@ -267,7 +267,7 @@ M3 operates as a pure data provider:
 
 ## 🎓 Learn More
 
-- See `.kiro/specs/m3-context-engine/` for detailed requirements and design
+- See `QUICKSTART.md` and `TEAM_INTEGRATION.md` in pi-engine for detailed integration guide
 - Check `pi-engine/TEAM_INTEGRATION.md` for M1 integration details
 - Review `memory/routine.md` for detected patterns
 

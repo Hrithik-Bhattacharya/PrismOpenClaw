@@ -1,10 +1,8 @@
 {
-  "location": "home",
-  "calendar_event": "none",
-  "upcoming_event": null,
-  "time_to_event": null,
-  "stress": 0.3,
-  "battery": 85,
-  "notifications": 2,
-  "activity": "idle"
+  "location": "test_location",
+  "calendar_event": "test_event",
+  "stress": 0.5,
+  "battery": 50,
+  "notifications": 0,
+  "activity": "testing"
 }
