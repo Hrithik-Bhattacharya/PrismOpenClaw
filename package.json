@@ -1,0 +1,20 @@
+{
+  "name": "prismopenclaw",
+  "version": "1.0.0",
+  "description": "Welcome to the **PrismOpenClaw** hackathon project! This repository contains the complete Persona Intelligence system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hrithik-Bhattacharya/PrismOpenClaw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hrithik-Bhattacharya/PrismOpenClaw/issues"
+  },
+  "homepage": "https://github.com/Hrithik-Bhattacharya/PrismOpenClaw#readme"
+}

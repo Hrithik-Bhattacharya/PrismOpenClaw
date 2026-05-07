@@ -56,8 +56,10 @@ node index.js --file ./decision.json --dry-run
 ### Fetch and execute from a remote endpoint
 
 ```powershell
-node index.js --url http://localhost:5000/decision/latest
+node index.js --url http://localhost:5000/decision
 ```
+
+> When using `--url`, M2 will execute the decision payload and automatically send an acknowledgement back to M1 via `POST /ack`.
 
 ## 📚 Action Mapping Reference
 

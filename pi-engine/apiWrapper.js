@@ -123,6 +123,16 @@ app.get('/decision', (req, res) => {
     }
 });
 
+app.get('/decision/latest', (req, res) => {
+    try {
+        if (DEMO_LOCK || REPLAY_MODE) return res.json(getDemoDecision(DEMO_SCENE));
+        const output = generateStandardOutputContract();
+        res.json(validateDecisionOutput(output));
+    } catch (err) {
+        res.json(getFallbackDecision());
+    }
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // ✅ M2 ENDPOINT: Action Acknowledgement
 // ─────────────────────────────────────────────────────────────────────────────
