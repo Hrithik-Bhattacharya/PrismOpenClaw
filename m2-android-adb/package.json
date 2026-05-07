@@ -1,0 +1,11 @@
+{
+  "name": "m2-android-adb",
+  "version": "1.0.0",
+  "description": "Android ADB action executor for the PrismOpenClaw persona intelligence system.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "help": "node index.js --help"
+  },
+  "license": "MIT"
+}

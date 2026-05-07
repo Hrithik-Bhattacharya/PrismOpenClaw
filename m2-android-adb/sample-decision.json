@@ -1,0 +1,11 @@
+{
+  "persona": "work",
+  "confidence": 0.92,
+  "actions": [
+    "enable_dnd",
+    "open_calendar",
+    "mute_social_apps",
+    "set_brightness_high"
+  ],
+  "reason": "Meeting in 10 minutes"
+}
