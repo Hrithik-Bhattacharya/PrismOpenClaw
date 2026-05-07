@@ -2286,5 +2286,148 @@
     "notifications": 0,
     "activity": "exercising",
     "timestamp": "2026-05-07T20:01:16.120799"
+  },
+  {
+    "location": "commute",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 789,
+    "stress": 0.14,
+    "battery": 85,
+    "notifications": 3,
+    "activity": "commuting",
+    "timestamp": "2026-05-07T20:20:44.411840"
+  },
+  {
+    "location": "commute",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 788,
+    "stress": 0.13,
+    "battery": 84,
+    "notifications": 2,
+    "activity": "commuting",
+    "timestamp": "2026-05-07T20:21:44.414199"
+  },
+  {
+    "location": "commute",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 787,
+    "stress": 0.15,
+    "battery": 85,
+    "notifications": 4,
+    "activity": "commuting",
+    "timestamp": "2026-05-07T20:22:44.424208"
+  },
+  {
+    "location": "commute",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 786,
+    "stress": 0.17,
+    "battery": 85,
+    "notifications": 5,
+    "activity": "commuting",
+    "timestamp": "2026-05-07T20:23:44.429892"
+  },
+  {
+    "location": "commute",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 785,
+    "stress": 0.18,
+    "battery": 84,
+    "notifications": 6,
+    "activity": "commuting",
+    "timestamp": "2026-05-07T20:24:44.420757"
+  },
+  {
+    "location": "commute",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 784,
+    "stress": 0.18,
+    "battery": 84,
+    "notifications": 6,
+    "activity": "commuting",
+    "timestamp": "2026-05-07T20:25:44.429042"
+  },
+  {
+    "location": "commute",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 783,
+    "stress": 0.19,
+    "battery": 84,
+    "notifications": 7,
+    "activity": "commuting",
+    "timestamp": "2026-05-07T20:26:44.420174"
+  },
+  {
+    "location": "commute",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 782,
+    "stress": 0.19,
+    "battery": 84,
+    "notifications": 7,
+    "activity": "commuting",
+    "timestamp": "2026-05-07T20:27:44.425667"
+  },
+  {
+    "location": "commute",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 781,
+    "stress": 0.15,
+    "battery": 84,
+    "notifications": 4,
+    "activity": "commuting",
+    "timestamp": "2026-05-07T20:28:44.415084"
+  },
+  {
+    "location": "commute",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 780,
+    "stress": 0.15,
+    "battery": 83,
+    "notifications": 4,
+    "activity": "commuting",
+    "timestamp": "2026-05-07T20:29:44.421666"
+  },
+  {
+    "location": "college",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 779,
+    "stress": 0.12,
+    "battery": 83,
+    "notifications": 1,
+    "activity": "working",
+    "timestamp": "2026-05-07T20:30:44.424866"
+  },
+  {
+    "location": "college",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 778,
+    "stress": 0.12,
+    "battery": 83,
+    "notifications": 1,
+    "activity": "working",
+    "timestamp": "2026-05-07T20:31:44.418677"
+  },
+  {
+    "location": "college",
+    "calendar_event": "none",
+    "upcoming_event": "Daily Standup",
+    "time_to_event": 777,
+    "stress": 0.12,
+    "battery": 84,
+    "notifications": 1,
+    "activity": "working",
+    "timestamp": "2026-05-07T20:32:44.415045"
   }
 ]
