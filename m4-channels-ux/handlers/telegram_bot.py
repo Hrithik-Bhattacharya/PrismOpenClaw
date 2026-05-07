@@ -140,6 +140,13 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     raw = query.data  # e.g. "persona:WORK" or "persona:PAUSE"
     _, value = raw.split(":", 1)
 
+    if value == "EDIT":
+        original_text = query.message.text_html if query.message.text_html else ""
+        label = "✏️ <b>Edit requested.</b>"
+        new_text = label if not original_text else f"{original_text}\n\n──────────────\n{label}"
+        await query.edit_message_text(text=new_text, parse_mode="HTML")
+        return
+
     payload = normalise_response(value)
 
     # Forward decision to M1 (fire-and-forget; M1 may be temporarily down)
@@ -149,7 +156,7 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     except Exception:
         pass  # M1 will poll state on next heartbeat cycle
 
-    label = "⏸ <b>Switching paused.</b>" if value == "PAUSE" else f"✅ <b>Persona {html.escape(value)} selected.</b>"
+    label = "😴 <b>Sleep mode enabled.</b>" if value == "PAUSE" else f"✅ <b>Persona {html.escape(value)} selected.</b>"
     
     # Preserve the original text (including spoilers) and append the result
     original_text = query.message.text_html if query.message.text_html else ""

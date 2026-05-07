@@ -1,11 +1,10 @@
 {
-  "location": "unknown",
+  "location": "gym",
   "calendar_event": "none",
   "upcoming_event": "Daily Standup",
-  "time_to_event": 840,
+  "time_to_event": 808,
   "stress": 0.1,
-  "battery": 85,
+  "battery": 84,
   "notifications": 0,
-  "activity": "idle",
-  "timestamp": "2026-05-07T19:29:50.195608"
+  "activity": "exercising"
 }

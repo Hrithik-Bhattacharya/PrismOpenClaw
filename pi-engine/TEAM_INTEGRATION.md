@@ -89,6 +89,12 @@ LOG_LEVEL=info
 | `M3_API_TOKEN` | M3 team generates | M1 (contextReader.js) | Required for M3 |
 | `M3_API_URL` | M3 team provides their URL | M1 (contextReader.js) | Required for M3 |
 
+### Where each module stores its keys
+
+- M1: [pi-engine/.env](../pi-engine/.env) for LLM keys, Telegram settings, and M3 auth.
+- M3: [m3-context-engine/.env](../m3-context-engine/.env) for the M1 endpoint and token.
+- M4: [m4-channels-ux/.env](../m4-channels-ux/.env) for Telegram, shared token, and M1 callback URL.
+
 > ⚠️ **NEVER commit `.env` to Git.** It's already in `.gitignore`. If you accidentally push it, rotate all your keys immediately.
 
 ---

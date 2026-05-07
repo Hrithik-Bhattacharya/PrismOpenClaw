@@ -24,7 +24,14 @@ python main.py
 | `TELEGRAM_BOT_TOKEN` | From @BotFather |
 | `TELEGRAM_CHAT_ID` | Your personal chat ID (send `/start` to the bot, then check `getUpdates`) |
 | `M3_API_TOKEN` | Shared secret between M3/M1 and M4 — any random string |
-| `M1_CALLBACK_URL` | Where M4 POSTs user decisions (default `http://localhost:8001/persona-decision`) |
+| `M1_CALLBACK_URL` | Where M4 POSTs user decisions (default `http://localhost:5000/override`) |
+
+### Where to enter keys
+
+- M1 keys belong in [pi-engine/.env](../pi-engine/.env) or [pi-engine/.env.example](../pi-engine/.env.example).
+- M3 keys belong in [m3-context-engine/.env](../m3-context-engine/.env) or [m3-context-engine/.env.example](../m3-context-engine/.env.example).
+- M4 keys belong in [m4-channels-ux/.env](./.env) or [m4-channels-ux/.env.example](./.env.example).
+- Keep the same `M3_API_TOKEN` value in M1, M3, and M4 so the authenticated POSTs match.
 
 ---
 

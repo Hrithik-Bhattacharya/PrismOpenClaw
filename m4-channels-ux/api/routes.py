@@ -47,11 +47,11 @@ class Explanation(BaseModel):
     full_report: str
 
 class DecisionRequest(BaseModel):
-    persona: str
+    persona: str | None = None
     reason: str = ""
     explanation: Explanation | None = None
     requires_user_input: bool = False
-    conflict: bool = False
+    conflict: bool | dict | None = False
     
     class Config:
         extra = 'allow'

@@ -9,7 +9,10 @@ def normalise_response(selected_value: str) -> dict:
 
     selected_value: persona name string, or "PAUSE" / "EDIT"
     """
+    persona = "sleep" if selected_value == "PAUSE" else selected_value
+
     return {
+        "persona": persona,
         "selected_persona": selected_value,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "source": "telegram",
