@@ -7,10 +7,10 @@
 
 ## ✅ Current Status
 
-All three modules now share a **unified authentication token** for inter-module communication:
+All three modules should share one **unified authentication token** for inter-module communication.
 
-```
-M3_API_TOKEN = phantom-shared-secret-2024  (used across all three modules)
+```env
+M3_API_TOKEN=<same-value-in-m1-m3-m4>
 ```
 
 ---
@@ -20,27 +20,27 @@ M3_API_TOKEN = phantom-shared-secret-2024  (used across all three modules)
 ### **M1 (PI Engine) - Node.js**
 📁 **Location:** `pi-engine/.env`
 
-**✅ Already Configured:**
+**Template (safe example):**
 ```env
 LLM_PROVIDER=auto
-GROQ_API_KEY=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
-GEMINI_API_KEY=AIzaSyD8puVOwXdwaHGmEFoTAR5-X4V46Q5BlsU
-M3_API_TOKEN=phantom-shared-secret-2024
+GROQ_API_KEY=your_groq_key_here
+GEMINI_API_KEY=your_gemini_key_here
+M3_API_TOKEN=your_shared_api_token_here
 M3_API_URL=http://localhost:5001
 PORT=5000
 ```
 
-**⚠️ Note:** LLM keys are shared/demo keys. Replace with your own for production.
+**⚠️ Note:** Never commit real keys/tokens to git.
 
 ---
 
 ### **M3 (Context Engine) - Python**
 📁 **Location:** `m3-context-engine/.env`
 
-**✅ Already Configured:**
+**Template (safe example):**
 ```env
 M1_API_URL=http://localhost:5000
-M1_API_TOKEN=phantom-shared-secret-2024
+M1_API_TOKEN=your_shared_api_token_here
 SIMULATION_MODE=true
 LOG_LEVEL=INFO
 DEMO_MODE=true
@@ -53,9 +53,9 @@ DEMO_MODE=true
 ### **M4 (Channels UX) - Python**
 📁 **Location:** `m4-channels-ux/.env`
 
-**✅ Already Configured:**
+**Template (safe example):**
 ```env
-M3_API_TOKEN=phantom-shared-secret-2024
+M3_API_TOKEN=your_shared_api_token_here
 M1_CALLBACK_URL=http://localhost:5000/override
 HOST=0.0.0.0
 PORT=8000
@@ -125,9 +125,9 @@ Get-Content m4-channels-ux\.env | Select-String "M3_API_TOKEN|TELEGRAM_BOT_TOKEN
 
 Expected output:
 ```
-M3_API_TOKEN=phantom-shared-secret-2024     (same in all three)
+M3_API_TOKEN=<same value in all three>      (M1/M3/M4)
 PORT=5000                                     (M1)
-M1_API_TOKEN=phantom-shared-secret-2024     (M3)
+M1_API_TOKEN=<same shared token>            (M3)
 TELEGRAM_BOT_TOKEN=<your_token>             (M4)
 TELEGRAM_CHAT_ID=<your_id>                  (M4)
 ```
@@ -270,6 +270,13 @@ KeyError: 'TELEGRAM_BOT_TOKEN'
 ```
 → Complete the Telegram setup (Step 1 above) and fill in all required fields
 
+### **M4/Telegram unavailable but M1+M3 should still run**
+→ Keep M1 and M3 running; core context → decision loop continues.
+→ In `pi-engine/.env`, keep fallback-friendly settings:
+  - `ENABLE_M4_PUSH=true` (M1 attempts push but should continue even if M4 is down)
+  - `USE_M4_SIM=true` (demo-safe behavior)
+→ M1↔M3 integration remains the primary path and is independent of Telegram delivery.
+
 ### **Modules can't communicate**
 ```
 requests.exceptions.ConnectionError: Connection refused
@@ -340,7 +347,7 @@ Once all three are running, they'll automatically start communicating via the sh
 
 ## 📝 Notes
 
-- **Shared Token:** The same `M3_API_TOKEN` is used for all inter-module authentication
+- **Shared Token:** Use the same token value in M1/M3/M4
 - **Simulation Mode:** M3 runs in `SIMULATION_MODE=true` with realistic mock data (no Android device needed)
 - **LLM Fallback:** M1 tries Groq first, then falls back to Gemini
 - **Demo Mode:** M3 uses `DEMO_MODE=true` to generate realistic daily patterns
