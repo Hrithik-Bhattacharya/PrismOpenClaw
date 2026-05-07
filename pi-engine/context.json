@@ -1,11 +1,11 @@
 {
-  "location": "college",
+  "location": "commute",
   "calendar_event": "none",
   "upcoming_event": "Daily Standup",
-  "time_to_event": 777,
-  "stress": 0.12,
-  "battery": 84,
-  "notifications": 1,
-  "activity": "working",
-  "timestamp": "2026-05-07T20:32:44.415045"
+  "time_to_event": 767,
+  "stress": 0.14,
+  "battery": 81,
+  "notifications": 3,
+  "activity": "commuting",
+  "timestamp": "2026-05-07T20:42:44.416462"
 }

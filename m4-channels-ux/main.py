@@ -18,9 +18,15 @@ from config import HOST, PORT
 async def lifespan(app: FastAPI):
     # Start Telegram polling in background
     tg_app = get_app()
-    await tg_app.initialize()
-    await tg_app.start()
-    asyncio.create_task(tg_app.updater.start_polling(drop_pending_updates=True))
+    try:
+        import telegram.error
+        await tg_app.initialize()
+        await tg_app.start()
+        asyncio.create_task(tg_app.updater.start_polling(drop_pending_updates=True))
+    except telegram.error.InvalidToken as e:
+        print(f"Skipping Telegram initialization: {e}")
+    except Exception as e:
+        print(f"Skipping Telegram initialization due to error: {e}")
 
     # Start morning-brief cron
     start_scheduler()
@@ -28,9 +34,12 @@ async def lifespan(app: FastAPI):
     yield
 
     # Graceful shutdown
-    await tg_app.updater.stop()
-    await tg_app.stop()
-    await tg_app.shutdown()
+    try:
+        await tg_app.updater.stop()
+        await tg_app.stop()
+        await tg_app.shutdown()
+    except Exception as e:
+        pass
 
 
 app = FastAPI(title="Phantom M4 — Comms Layer", lifespan=lifespan)
