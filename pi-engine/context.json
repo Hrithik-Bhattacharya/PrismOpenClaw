@@ -1,6 +1,13 @@
 {
   "location": "commute",
   "calendar_event": "none",
+  "upcoming_event": null,
+  "time_to_event": null,
+  "stress": 0.6,
+  "battery": 55,
+  "notifications": 10,
+  "activity": "distracted",
+  "simulated_hour": 20
   "upcoming_event": "Daily Standup",
   "time_to_event": 767,
   "stress": 0.14,

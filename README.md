@@ -12,7 +12,7 @@ The core intelligence loop. It takes in context, uses rules + AI to pick a perso
 - **Start here:** Read [TEAM_INTEGRATION.md](./pi-engine/TEAM_INTEGRATION.md) to understand how to connect your modules to the engine.
 
 ### 📱 2. [m2-android-adb (M2) - Execution Layer](./m2-android-adb/README.md)
-**Status: ⏳ TO DO** (Member 2)
+**Status:** ✅ 100% COMPLETE (Member 2)
 Translates the JSON actions from M1 into physical ADB commands on the Android device (muting notifications, changing brightness, launching apps).
 
 ### 📡 3. [m3-context-engine (M3) - Sensors](./m3-context-engine/README.md)
