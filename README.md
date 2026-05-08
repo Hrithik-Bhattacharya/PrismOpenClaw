@@ -4,6 +4,56 @@
 
 **Adaptive Persona Intelligence System** for proactive device behavior.
 
+## 📌 GitHub Submission Checklist (Quick Access)
+
+- [x] **Source Code** (this repository)
+- [x] **Presentation (PPT):** https://docs.google.com/presentation/d/1_rJozbBg6PoBs7a9TbzsIw7rPPlysWJ_ONlItV5eGs8/edit?usp=sharing
+- [x] **Video Demo:** https://youtu.be/X3qt0fVUqBo
+- [x] **AI Disclosure:** https://docs.google.com/document/d/1bk8weF_tbno0ggiHZLCtnNyUkpqPM1BJIridfvl5UWU/edit?usp=sharing
+- [x] **README** (this file)
+- [x] **APK/SDK (if any):** **Android SDK Platform-Tools (ADB)** used via in-repo module `m2-android-adb/` (Node.js ADB execution layer)
+
+### 📂 Added Submission Documents (In This Repo)
+
+- [PPT (PDF Export) — `RV College of Engineering_AutoMind Collective.pdf`](./RV%20College%20of%20Engineering_AutoMind%20Collective.pdf)
+- [AI Disclosure (DOCX) — `OpenClaw_AI_Disclosure (1).docx`](./OpenClaw_AI_Disclosure%20(1).docx)
+
+## README Structure (Required)
+
+### Problem
+Smartphone behavior is often context-blind, forcing manual switching (DND, focus, app behavior) during meetings, study, interviews, or workouts.
+
+### Solution
+Phantom Mode is an OpenClaw-inspired adaptive system that uses context signals, explainable decisioning, Android action execution, and user override via Telegram.
+
+### Setup
+- Start from: [STARTUP_GUIDE.md](./STARTUP_GUIDE.md)
+- Environment and modules:
+  - `pi-engine/`
+  - `m2-android-adb/`
+  - `m3-context-engine/`
+  - `m4-channels-ux/`
+
+### Instructions
+- Full integration validation: [TESTING_GUIDE.md](./TESTING_GUIDE.md)
+- Live walkthrough flow: [DEMO_SCRIPT.md](./DEMO_SCRIPT.md)
+- Architecture reference: [ARCHITECTURE.md](./ARCHITECTURE.md)
+
+### Usage
+- Trigger decisions through M1 API (`/decision`, `/decision/latest`)
+- Execute actions through M2 (dry-run or live ADB)
+- Receive user-facing updates/conflicts in Telegram via M4
+- Use override path to send user choice back to M1 (`/override`)
+
+## 4. GitHub Repo must include
+
+a. **Project Video Demo** -> Explaining the solution & Walkthrough - **MUST FOR THE EVALUATION**  
+b. **Complete Source Code**  
+c. **README** ( Problem, solution, setup, instructions, usage )  
+d. **AI Disclosure** ( Clearly mention how AI tools/models were used )  
+e. **PPT - MUST** (UNDERSTANDING WHAT YOU HAVE BUILT!! ) -> format attached  
+f. **APK/SDK ( if any )**
+
 Phantom Mode combines context sensing, decision intelligence, device execution, and user-facing channels into one integrated pipeline:
 
 **M3 Context → M1 Decision + Explainability → M2 Action Execution → M4 User Communication/Override**
@@ -108,54 +158,6 @@ Communication & override layer:
 
 ---
 
-## 🏁 Evaluation Submission Checklist (Must Include in GitHub Repo)
-
-Use this as the final packaging checklist before submission:
-
-- [ ] **Project Video Demo (MANDATORY)**
-  - Explain the problem, architecture, and solution flow
-  - Walk through real execution (context → decision → Telegram/ADB/override)
-  - Add link in this README under a `## Demo Video` section
-
-- [ ] **Complete Source Code**
-  - Include all modules (`pi-engine`, `m2-android-adb`, `m3-context-engine`, `m4-channels-ux`)
-  - Ensure no secrets are committed (`.env` excluded)
-
-- [ ] **README (MANDATORY CONTENT)**
-  - Problem statement
-  - Solution approach
-  - Setup instructions
-  - Run instructions
-  - Usage/testing instructions
-
-- [ ] **AI Disclosure (MANDATORY)**
-  - Clearly mention which AI tools/models were used
-  - Mention where AI assisted (e.g., code drafting, debugging, docs, test scripting)
-  - Mention what was human-implemented/reviewed
-  - Add a dedicated `## AI Disclosure` section in README
-
-- [ ] **PPT Deck (MANDATORY)**
-  - Must follow the attached evaluation format
-  - Focus on understanding: architecture, module responsibilities, demo proof, limitations, future scope
-
-- [ ] **APK/SDK (if any)**
-  - If APK exists, upload under a release/artifacts folder and link it in README
-  - If SDK/tooling bundle exists, include usage steps and compatibility notes
-
-### Suggested README section order for evaluators
-
-1. `## Problem`
-2. `## Solution`
-3. `## Architecture`
-4. `## Setup`
-5. `## Run`
-6. `## Usage / Testing`
-7. `## Demo Video`
-8. `## AI Disclosure`
-9. `## Team / Credits`
-
----
-
 ## Demo Video
 
 - **Project walkthrough video (MANDATORY):** `TODO_ADD_DRIVE_OR_YOUTUBE_LINK`
@@ -171,7 +173,7 @@ Use this as the final packaging checklist before submission:
 - **APK download:** `TODO_ADD_APK_LINK_OR_PATH`
 - **SDK / tooling bundle:** `TODO_ADD_SDK_LINK_OR_PATH`
 
-> SDK Note: This project uses the in-repo Android ADB execution module at `m2-android-adb/` as the SDK/tooling component for device action execution.
+> SDK Note: This project explicitly uses **Android SDK Platform-Tools (ADB)** as the SDK/tooling layer, integrated through the in-repo module `m2-android-adb/` for device action execution.
 
 ## AI Disclosure
 
