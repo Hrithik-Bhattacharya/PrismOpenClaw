@@ -1,10 +1,10 @@
 {
-  "location": "office",
+  "location": "gym",
   "calendar_event": "Team Social",
   "upcoming_event": "Personal Project",
-  "time_to_event": 1018,
-  "stress": 0.12,
+  "time_to_event": 969,
+  "stress": 0.15,
   "battery": 85,
-  "notifications": 1,
+  "notifications": 4,
   "activity": "working"
 }

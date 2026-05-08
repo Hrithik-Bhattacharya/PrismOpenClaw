@@ -185,6 +185,51 @@ node index.js --url http://localhost:5000/decision
 - M1 logs show `[M2] Actions Acknowledged`
 
 > Note: if no device is connected, use dry-run and still validate decision parsing.
+>
+> Note (Android permission policy): on some non-root phones, commands like
+> `adb shell settings put global ...` may fail with:
+> `java.lang.SecurityException: Permission denial (WRITE_SECURE_SETTINGS)`.
+> The DND actions have been migrated to `cmd notification set_dnd on/off` for better compatibility.
+
+### 6.3 Real-phone ADB safety gate (MUST before live device run)
+
+Run these checks **before** any non-dry-run command:
+
+```powershell
+adb devices
+adb shell getprop ro.product.model
+adb shell settings get global zen_mode
+adb shell settings get system screen_brightness
+adb shell cmd notification get_dnd
+```
+
+Safety checklist:
+
+- [ ] Only your intended demo phone is connected (`adb devices` shows expected serial)
+- [ ] Phone battery is above 30%
+- [ ] You have manually closed sensitive apps (banking, personal chats, OTP apps)
+- [ ] USB debugging is enabled only for demo duration
+- [ ] You are running from known action mappings in `m2-android-adb/ACTION_MAPPING.md`
+- [ ] ADB first run is executed with low-risk decision payload (e.g., DND, brightness, open calendar)
+
+Recommended first real run:
+
+```powershell
+node index.js --url http://localhost:5000/decision/latest
+```
+
+Rollback commands (keep handy):
+
+```powershell
+adb shell cmd notification set_dnd off
+adb shell settings put system screen_brightness 120
+adb shell input keyevent 3
+```
+
+**PASS if:**
+- Commands execute without shell errors
+- Phone remains responsive
+- M2 sends ACK and M1 logs acknowledgement
 
 ---
 
@@ -229,6 +274,24 @@ User taps a Telegram button.
 - M4 sends callback payload to `M1_CALLBACK_URL`
 - M1 logs: `USER OVERRIDE REQUESTED: Switch to -> ...`
 - M1 override response includes success + updated decision
+
+### 7.4 Telegram button integrity checks (must pass before final demo)
+
+For each button (`persona:<X>`, `persona:PAUSE`, `persona:REJECT`, `persona:EDIT`):
+
+- [ ] Tap action produces no Telegram client error
+- [ ] Message updates in-place with confirmation label
+- [ ] No traceback appears in M4 logs
+- [ ] For persona/PAUSE options, callback POST to M1 is attempted
+- [ ] For EDIT option, UI updates without sending invalid override payload
+
+Suggested quick loop:
+1. Trigger `/conflict`
+2. Tap persona A
+3. Trigger `/conflict` again
+4. Tap snooze
+5. Trigger `/decision` payload with `requires_user_input=true`
+6. Tap manual override/edit and confirm graceful UI behavior
 
 ---
 
@@ -293,6 +356,21 @@ If all checked: ✅ **System is properly integrated**.
 - No WhatsApp output → bad Twilio SID/token or wrong `whatsapp:+` number format
 - Telegram says `No report` in decision message → M1 not restarted after explainability patch, or stale payload path
 - M1 not reflecting override → wrong `M1_CALLBACK_URL` in M4 env
+- `WRITE_SECURE_SETTINGS` error during ADB actions → device blocks privileged settings writes (expected on many stock phones). Use dry-run for proof, prefer non-privileged commands, and keep `cmd notification set_dnd on/off` mapping.
+
+### 10.1 Stable demo fallback for restricted phones
+
+If your phone blocks privileged settings commands, use this sequence:
+
+1. Run safe compatibility check:
+```powershell
+adb shell cmd notification set_dnd off
+```
+2. Run full mapping in dry-run:
+```powershell
+node C:\Coding\PrismOpenClaw\m2-android-adb\index.js --url http://localhost:5000/decision/latest --dry-run
+```
+3. For live demo execution, prefer low-risk actions that launch apps/intents and avoid privileged global settings where possible.
 
 ---
 

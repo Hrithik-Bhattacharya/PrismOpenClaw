@@ -1,8 +1,10 @@
-# PrismOpenClaw
+# Phantom Mode
+
+**Team:** AutoMind Collective
 
 **Adaptive Persona Intelligence System** for proactive device behavior.
 
-PrismOpenClaw combines context sensing, decision intelligence, device execution, and user-facing channels into one integrated pipeline:
+Phantom Mode combines context sensing, decision intelligence, device execution, and user-facing channels into one integrated pipeline:
 
 **M3 Context → M1 Decision + Explainability → M2 Action Execution → M4 User Communication/Override**
 
@@ -106,6 +108,90 @@ Communication & override layer:
 
 ---
 
+## 🏁 Evaluation Submission Checklist (Must Include in GitHub Repo)
+
+Use this as the final packaging checklist before submission:
+
+- [ ] **Project Video Demo (MANDATORY)**
+  - Explain the problem, architecture, and solution flow
+  - Walk through real execution (context → decision → Telegram/ADB/override)
+  - Add link in this README under a `## Demo Video` section
+
+- [ ] **Complete Source Code**
+  - Include all modules (`pi-engine`, `m2-android-adb`, `m3-context-engine`, `m4-channels-ux`)
+  - Ensure no secrets are committed (`.env` excluded)
+
+- [ ] **README (MANDATORY CONTENT)**
+  - Problem statement
+  - Solution approach
+  - Setup instructions
+  - Run instructions
+  - Usage/testing instructions
+
+- [ ] **AI Disclosure (MANDATORY)**
+  - Clearly mention which AI tools/models were used
+  - Mention where AI assisted (e.g., code drafting, debugging, docs, test scripting)
+  - Mention what was human-implemented/reviewed
+  - Add a dedicated `## AI Disclosure` section in README
+
+- [ ] **PPT Deck (MANDATORY)**
+  - Must follow the attached evaluation format
+  - Focus on understanding: architecture, module responsibilities, demo proof, limitations, future scope
+
+- [ ] **APK/SDK (if any)**
+  - If APK exists, upload under a release/artifacts folder and link it in README
+  - If SDK/tooling bundle exists, include usage steps and compatibility notes
+
+### Suggested README section order for evaluators
+
+1. `## Problem`
+2. `## Solution`
+3. `## Architecture`
+4. `## Setup`
+5. `## Run`
+6. `## Usage / Testing`
+7. `## Demo Video`
+8. `## AI Disclosure`
+9. `## Team / Credits`
+
+---
+
+## Demo Video
+
+- **Project walkthrough video (MANDATORY):** `TODO_ADD_DRIVE_OR_YOUTUBE_LINK`
+- Suggested title: `PrismOpenClaw - Problem, Solution, Live Walkthrough`
+
+## PPT
+
+- **Evaluation PPT (MANDATORY):** `TODO_ADD_PPT_FILE_LINK_OR_PATH`
+- Recommended repo path: `submission/PPT/PrismOpenClaw_Final.pptx`
+
+## APK / SDK Artifacts (if any)
+
+- **APK download:** `TODO_ADD_APK_LINK_OR_PATH`
+- **SDK / tooling bundle:** `TODO_ADD_SDK_LINK_OR_PATH`
+
+> SDK Note: This project uses the in-repo Android ADB execution module at `m2-android-adb/` as the SDK/tooling component for device action execution.
+
+## AI Disclosure
+
+> Replace this placeholder with your final disclosure before submission.
+
+**AI tools/models used:** `TODO_LIST_TOOLS_AND_MODELS`
+
+**How AI was used in this project:**
+- `TODO`: brainstorming / architecture discussion
+- `TODO`: code drafting or refactoring support
+- `TODO`: debugging support
+- `TODO`: documentation/test-script generation
+
+**Human ownership and verification:**
+- Final architecture decisions: `TODO_TEAM_MEMBER_NAMES`
+- Code review and validation: `TODO_TEAM_MEMBER_NAMES`
+- Final demo/testing sign-off: `TODO_TEAM_MEMBER_NAMES`
+
+---
+
 ## ⚠️ Notes
 
 - For real M2 phone control, **ADB must be installed**.
@@ -114,4 +200,6 @@ Communication & override layer:
 
 ---
 
-Built for Samsung Clash of the Claws Hackathon — PrismOpenClaw Team.
+Built for Samsung Clash of the Claws Hackathon — AutoMind Collective.
+
+Inspired by OpenClaw concepts and adapted into this project architecture.

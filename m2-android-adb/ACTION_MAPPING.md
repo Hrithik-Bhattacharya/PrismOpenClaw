@@ -6,8 +6,8 @@ This document defines the exact action-to-ADB command contract for the M2 Androi
 
 | Action Key | ADB Command |
 |-----------|-------------|
-| `enable_dnd` | `adb shell settings put global zen_mode 1` |
-| `disable_dnd` | `adb shell settings put global zen_mode 0` |
+| `enable_dnd` | `adb shell cmd notification set_dnd on` |
+| `disable_dnd` | `adb shell cmd notification set_dnd off` |
 | `mute_notifications` | `adb shell settings put global notification_sound ""` |
 | `enable_focus` | `adb shell am start -a android.intent.action.MAIN -n com.android.settings/.Settings` |
 | `open_calendar` | `adb shell am start -a android.intent.action.VIEW -d content://com.android.calendar/events` |

@@ -2880,5 +2880,38 @@
     "notifications": 1,
     "activity": "working",
     "timestamp": "2026-05-08T17:01:31.866502"
+  },
+  {
+    "location": "gym",
+    "calendar_event": "Team Social",
+    "upcoming_event": "Personal Project",
+    "time_to_event": 971,
+    "stress": 0.18,
+    "battery": 85,
+    "notifications": 6,
+    "activity": "working",
+    "timestamp": "2026-05-08T17:48:47.308241"
+  },
+  {
+    "location": "gym",
+    "calendar_event": "Team Social",
+    "upcoming_event": "Personal Project",
+    "time_to_event": 970,
+    "stress": 0.18,
+    "battery": 84,
+    "notifications": 6,
+    "activity": "working",
+    "timestamp": "2026-05-08T17:49:47.315001"
+  },
+  {
+    "location": "gym",
+    "calendar_event": "Team Social",
+    "upcoming_event": "Personal Project",
+    "time_to_event": 969,
+    "stress": 0.15,
+    "battery": 85,
+    "notifications": 4,
+    "activity": "working",
+    "timestamp": "2026-05-08T17:50:47.314218"
   }
 ]
