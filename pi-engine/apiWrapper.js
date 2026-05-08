@@ -276,14 +276,23 @@ function recordStream(type, data) {
 function generateStandardOutputContract() {
     if (!heartbeatState.lastDecision) throw new Error('No decisions made yet');
     const dec = heartbeatState.lastDecision;
+    const explanationReport = dec.explanation || heartbeatState.lastExplanation || 'No report';
+    const topSignals = Array.isArray(dec?.context)
+        ? []
+        : [
+            { signal: 'location', value: dec?.context?.location ?? 'unknown', confidence: 0.9 },
+            { signal: 'calendar', value: dec?.context?.calendar_event ?? 'none', confidence: 0.95 },
+            { signal: 'stress', value: dec?.context?.stress ?? null, confidence: 0.75 },
+        ];
+
     return {
         persona: dec.persona,
         confidence: 0.95,
         is_predictive: dec.isPredictive || false,
         transition: { type: "instant", from: dec.previousPersona || "none", to: dec.persona, steps: [], message: `Switched to ${dec.persona}` },
         actions: getActionsForPersona(dec.persona),
-        reason: 'Heartbeat cycle',
-        explanation: { top_signals: [], decision_source: 'hybrid_engine', full_report: 'No report' },
+        reason: dec.reason || 'Heartbeat cycle',
+        explanation: { top_signals: topSignals, decision_source: 'hybrid_engine', full_report: explanationReport },
         requires_user_input: false,
         conflict: null,
         state: { current_persona: dec.persona, previous_persona: dec.previousPersona, last_switch_time: dec.timestamp, in_cooldown: false, mode_duration_minutes: 0 },

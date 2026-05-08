@@ -14,6 +14,7 @@ from handlers.telegram_bot import (
     send_decision_message,
 )
 from handlers.whatsapp_bot import send_whatsapp_morning_brief
+from handlers.whatsapp_bot import send_whatsapp_decision_update
 
 router = APIRouter()
 
@@ -90,7 +91,9 @@ async def persona_suggestion(req: SuggestionRequest):
 @router.post("/decision", dependencies=[Depends(verify_token)])
 async def decision(req: DecisionRequest):
     """M1 calls this with the massive JSON object containing the AI report."""
-    await send_decision_message(req.dict())
+    payload = req.dict()
+    await send_decision_message(payload)
+    send_whatsapp_decision_update(payload)
     return {"status": "sent"}
 
 

@@ -105,13 +105,23 @@ async def send_decision_message(decision_data: dict) -> None:
     explanation = decision_data.get("explanation") or {}
     report = explanation.get("full_report", "No detailed report available.")
     
+    # Alignment/readability fix:
+    # Render report in monospace block so table-like sections stay aligned better.
+    # Length guard is recommended for Telegram reliability (message size limits),
+    # but can be disabled by setting to None.
+    TELEGRAM_REPORT_MAX_CHARS = 2800
+
+    rendered_report = report
+    if TELEGRAM_REPORT_MAX_CHARS is not None and len(rendered_report) > TELEGRAM_REPORT_MAX_CHARS:
+        rendered_report = rendered_report[:TELEGRAM_REPORT_MAX_CHARS] + "\n... [report truncated]"
+
     text = (
         f"✨ <b>Persona Transition Initiated</b> ✨\n"
         f"━━━━━━━━━━━━━━━━━━\n"
         f"🎯 <b>Target Mode:</b> <code>{html.escape(persona)}</code>\n"
         f"⚡ <b>Trigger:</b> <i>{html.escape(reason)}</i>\n\n"
         f"🧠 <b>Neural Explanation Report:</b>\n"
-        f"<blockquote expandable><tg-spoiler>{html.escape(report)}</tg-spoiler></blockquote>"
+        f"<blockquote expandable><tg-spoiler><pre>{html.escape(rendered_report)}</pre></tg-spoiler></blockquote>"
     )
     
     keyboard = None

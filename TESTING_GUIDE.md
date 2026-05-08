@@ -20,7 +20,8 @@ You should be able to prove all of these:
 3. M2 consumes actions and sends ACK to M1
 4. M4 receives events and sends Telegram notifications
 5. Conflict user input (Telegram tap) reaches M1 `/override`
-6. Twilio WhatsApp morning brief path works (or cleanly degrades if credentials missing)
+6. Telegram decision message includes real explainability report (not placeholder text)
+7. Twilio WhatsApp morning brief + decision update paths work (or cleanly degrade if credentials missing)
 
 ---
 
@@ -149,8 +150,17 @@ Invoke-RestMethod http://localhost:5000/decision/latest
 - `persona`
 - `actions` (array)
 - `reason`
+- `explanation.full_report` with non-placeholder content
 - `requires_user_input`
 - `timestamp`
+
+### 5.1 Explainability quality check (important)
+
+After triggering `/decision`, verify `explanation.full_report` is **not** `"No report"`.
+
+**PASS if:**
+- API response contains a meaningful explanation report string
+- Telegram decision message shows the explanation content (spoiler/expandable), not a placeholder
 
 ---
 
@@ -196,6 +206,10 @@ This tests:
 
 **PASS if:** API responses are 200 and expected channel side-effects occur.
 
+For `/decision`, specifically verify:
+- Telegram receives persona + trigger + explanation report
+- Explanation is real engine text (not `No report`)
+
 ## 7.2 Telegram conflict test (manual)
 ```powershell
 $token = "<same M3_API_TOKEN>"
@@ -220,7 +234,9 @@ User taps a Telegram button.
 
 ## 8) Twilio WhatsApp Test
 
-Twilio is triggered by `/morning-brief` in M4.
+Twilio is triggered by both:
+- `/morning-brief` (daily summary)
+- `/decision` (persona transition update)
 
 ## 8.1 API trigger
 ```powershell
@@ -235,6 +251,8 @@ Invoke-RestMethod -Method Post -Uri http://localhost:8000/morning-brief `
 
 - **PASS (configured):**
   - M4 logs: `WhatsApp morning brief sent successfully`
+  - M4 logs: `WhatsApp decision update sent successfully`
+  - decision update reaches WhatsApp with persona + reason + explanation snippet
   - message arrives in configured WhatsApp destination
 
 - **PASS (graceful fallback):**
@@ -257,8 +275,10 @@ Mark all for “fully integrated”:
 - [ ] M2 sends ACK and M1 receives it
 - [ ] M4 endpoints authenticated by shared token
 - [ ] Telegram receives conflict/decision/stress messages
+- [ ] Telegram decision message includes real explainability report (not placeholder)
 - [ ] Telegram user selection reaches M1 override endpoint
 - [ ] Twilio WhatsApp morning brief sends (or degrades cleanly)
+- [ ] Twilio WhatsApp decision update sends (or degrades cleanly)
 - [ ] No module crash during 10+ minute run
 
 If all checked: ✅ **System is properly integrated**.
@@ -271,6 +291,7 @@ If all checked: ✅ **System is properly integrated**.
 - M2 cannot ack M1 → wrong `M1_API_URL` in `m2-android-adb/.env`
 - No Telegram output → invalid bot token/chat ID
 - No WhatsApp output → bad Twilio SID/token or wrong `whatsapp:+` number format
+- Telegram says `No report` in decision message → M1 not restarted after explainability patch, or stale payload path
 - M1 not reflecting override → wrong `M1_CALLBACK_URL` in M4 env
 
 ---
@@ -285,6 +306,8 @@ Capture screenshots/log snippets for:
 4. M2 execution + ACK success
 5. Telegram conflict message with inline buttons
 6. M1 override log after button tap
-7. WhatsApp morning brief delivery/log
+7. Telegram decision message with full explainability report visible
+8. WhatsApp morning brief delivery/log
+9. WhatsApp decision update delivery/log
 
-These 7 proofs make integration credibility very strong.
+These proofs make integration credibility very strong.

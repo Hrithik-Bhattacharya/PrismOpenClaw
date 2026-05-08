@@ -1,18 +1,10 @@
 {
-  "location": "commute",
-  "calendar_event": "none",
-  "upcoming_event": null,
-  "time_to_event": null,
-  "stress": 0.6,
-  "battery": 55,
-  "notifications": 10,
-  "activity": "distracted",
-  "simulated_hour": 20
-  "upcoming_event": "Daily Standup",
-  "time_to_event": 767,
-  "stress": 0.14,
-  "battery": 81,
-  "notifications": 3,
-  "activity": "commuting",
-  "timestamp": "2026-05-07T20:42:44.416462"
+  "location": "office",
+  "calendar_event": "Team Social",
+  "upcoming_event": "Personal Project",
+  "time_to_event": 1018,
+  "stress": 0.12,
+  "battery": 85,
+  "notifications": 1,
+  "activity": "working"
 }

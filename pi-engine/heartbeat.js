@@ -151,6 +151,8 @@ async function performHeartbeatCycle() {
                 persona: finalPersona,
                 previousPersona: prevPersona,
                 context: rawContext,
+                reason: winner?.reasoning || 'Heartbeat cycle',
+                explanation: explanation,
                 isPredictive,
                 transition: transition.key,
                 success: true,
