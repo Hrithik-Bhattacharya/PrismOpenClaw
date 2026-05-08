@@ -159,12 +159,12 @@ Use this as the final packaging checklist before submission:
 ## Demo Video
 
 - **Project walkthrough video (MANDATORY):** `TODO_ADD_DRIVE_OR_YOUTUBE_LINK`
-- Suggested title: `PrismOpenClaw - Problem, Solution, Live Walkthrough`
+- Suggested title: `Phantom Mode - Problem, Solution, Live Walkthrough`
 
 ## PPT
 
 - **Evaluation PPT (MANDATORY):** `TODO_ADD_PPT_FILE_LINK_OR_PATH`
-- Recommended repo path: `submission/PPT/PrismOpenClaw_Final.pptx`
+- Recommended repo path: `submission/PPT/PhantomMode_Final.pptx`
 
 ## APK / SDK Artifacts (if any)
 

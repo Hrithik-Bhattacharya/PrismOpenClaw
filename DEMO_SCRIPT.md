@@ -1,4 +1,4 @@
-# PrismOpenClaw — Judge Demo Script
+# Phantom Mode — Judge Demo Script
 
 Use this script to present the integrated system smoothly in **4–6 minutes**.
 
@@ -6,7 +6,7 @@ Use this script to present the integrated system smoothly in **4–6 minutes**.
 
 ## 0) Demo Goal (opening line)
 
-> "PrismOpenClaw proactively adapts phone behavior using real-time context, explains every decision, executes actions, and lets the user override instantly through Telegram."
+> "Phantom Mode proactively adapts phone behavior using real-time context, explains every decision, executes actions, and lets the user override instantly through Telegram."
 
 ---
 
@@ -148,7 +148,7 @@ Say:
 
 ## 3) Closing Statement (15 sec)
 
-> "PrismOpenClaw is a full-stack adaptive system: context intelligence, explainable decisions, action execution, and human override — all integrated and testable end-to-end."
+> "Phantom Mode is a full-stack adaptive system: context intelligence, explainable decisions, action execution, and human override — all integrated and testable end-to-end."
 
 ---
 

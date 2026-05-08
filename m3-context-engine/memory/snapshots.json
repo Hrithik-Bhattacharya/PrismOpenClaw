@@ -2913,5 +2913,16 @@
     "notifications": 4,
     "activity": "working",
     "timestamp": "2026-05-08T17:50:47.314218"
+  },
+  {
+    "location": "home",
+    "calendar_event": "none",
+    "upcoming_event": "Personal Project",
+    "time_to_event": 922,
+    "stress": 0.14,
+    "battery": 85,
+    "notifications": 3,
+    "activity": "idle",
+    "timestamp": "2026-05-08T18:37:36.387539"
   }
 ]

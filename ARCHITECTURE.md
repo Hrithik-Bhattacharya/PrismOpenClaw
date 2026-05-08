@@ -1,6 +1,6 @@
-# 🏗️ PrismOpenClaw Architecture
+# 🏗️ Phantom Mode Architecture
 
-This document defines the **Official System Architecture** for PrismOpenClaw.
+This document defines the **Official System Architecture** for Phantom Mode (AutoMind Collective), inspired by OpenClaw concepts.
 
 ## 🔥 HIGH-LEVEL FLOW
 

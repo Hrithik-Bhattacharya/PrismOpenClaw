@@ -1,4 +1,4 @@
-# PrismOpenClaw Unified Startup & Integration Guide
+# Phantom Mode Unified Startup & Integration Guide
 
 This guide is for the **latest integrated repo** where:
 - M1 and M3 are working

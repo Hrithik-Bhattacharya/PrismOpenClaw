@@ -83,7 +83,7 @@ This document outlines exactly how the modules interact end-to-end, what each te
 **Tasks:**
 1. **Build Executor Service:** Accept `{"actions": ["enable_dnd", "open_calendar"]}`.
 2. **Map Actions → ADB:**
-   - `enable_dnd` → `settings put global zen_mode 1`
+   - `enable_dnd` → `cmd notification set_dnd on`
    - `open_calendar` → `am start -n com.calendar`
 3. **Build Listener:** HTTP endpoint, WebSocket, or CLI trigger.
 4. **Handle Failures:** Retry logic, error logging.
