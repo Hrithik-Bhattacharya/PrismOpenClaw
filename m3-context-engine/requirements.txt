@@ -1,0 +1,21 @@
+# M3 Context Engine Dependencies
+# Optimized for hackathon - minimal, production-ready stack
+
+# Scheduling
+APScheduler==3.10.4
+
+# HTTP requests for M1 integration
+requests==2.31.0
+
+# Environment configuration
+python-dotenv==1.0.0
+
+# Type hints (Python 3.9 compatibility)
+typing-extensions==4.8.0
+
+# Data manipulation for pattern analysis (optional)
+# pandas==2.1.3  # Not needed for hackathon - using native Python
+
+# Testing (optional, for development)
+pytest==7.4.3
+pytest-cov==4.1.0

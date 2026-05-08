@@ -8,6 +8,7 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
+const axios = require('axios');
 const { updateContext, readContext } = require('./contextReader');
 const { validateContext, validateDecisionOutput } = require('./validation');
 const { getHeartbeatStatus, performHeartbeatCycle, heartbeatState } = require('./heartbeat');
@@ -32,6 +33,9 @@ const DEMO_SCENE = parseInt(process.env.DEMO_SCENE) || 1;
 // Record / Replay
 const RECORD_MODE = process.env.RECORD_MODE === 'true';
 const REPLAY_MODE = process.env.REPLAY_MODE === 'true';
+const ENABLE_M4_PUSH = process.env.ENABLE_M4_PUSH === 'true';
+const M4_API_URL = (process.env.M4_API_URL || 'http://localhost:8000').replace(/\/$/, '');
+const M4_API_TIMEOUT_MS = parseInt(process.env.M4_API_TIMEOUT_MS || '2000', 10);
 
 // Rate Limiting & Loop Control State
 const rateLimit = { lastContextUpdate: 0, lastOverride: 0 };
@@ -40,6 +44,66 @@ const OVERRIDE_COOLDOWN_MS = 5000;
 
 // Health & Metrics
 const metrics = { startTime: Date.now(), errorsLast5Min: 0, m2LastAck: null, m3LastUpdate: null };
+
+async function tryNotifyM4Decision(decisionPayload) {
+    if (!ENABLE_M4_PUSH || USE_M4_SIM) {
+        return;
+    }
+
+    try {
+        await axios.post(
+            `${M4_API_URL}/decision`,
+            decisionPayload,
+            {
+                timeout: M4_API_TIMEOUT_MS,
+                headers: {
+                    'x-api-token': process.env.M3_API_TOKEN || ''
+                }
+            }
+        );
+        console.log('✅ [M4] Decision pushed successfully');
+    } catch (err) {
+        const detail = err.response?.status ? `status ${err.response.status}` : err.message;
+        console.warn(`⚠️  [M4] Push failed (${detail}) — continuing without M4`);
+    }
+}
+
+async function handleUserOverride(req, res) {
+    const { persona, selected_persona, command } = req.body;
+    const requestedPersona = persona || selected_persona;
+    const targetPersona = command === 'pause' || requestedPersona === 'PAUSE'
+        ? 'sleep'
+        : requestedPersona;
+
+    if (!targetPersona) {
+        return res.status(400).json({ error: 'persona is required' });
+    }
+
+    if (DEMO_LOCK && DEMO_SCENE !== 3) {
+        return res.status(403).json({ error: 'Overrides locked in current demo scene' });
+    }
+
+    const now = Date.now();
+    if (now - rateLimit.lastOverride < OVERRIDE_COOLDOWN_MS) {
+        return res.status(429).json({ error: 'Override cooldown active.' });
+    }
+
+    console.log(`\n🚨 [M4] USER OVERRIDE REQUESTED: Switch to -> ${targetPersona}`);
+    if (USE_M4_SIM) console.log(`🤖 [M4 SIM] Telegram message logged: User overrode to ${targetPersona}`);
+
+    heartbeatState.manualOverride = {
+        active: true,
+        persona: targetPersona,
+        setAt: new Date().toISOString(),
+        expiresAfterCycles: 2
+    };
+
+    rateLimit.lastOverride = now;
+    if (RECORD_MODE) recordStream('override', { persona: targetPersona, command });
+
+    await performHeartbeatCycle();
+    return res.json({ success: true, message: `Overridden to ${targetPersona}`, decision: generateStandardOutputContract() });
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 📡 M3 ENDPOINT: Context Update
@@ -99,6 +163,8 @@ app.post('/decision', async (req, res) => {
         console.log(`✅ [M1] Decision made: ${validatedOutput.persona}`);
         if (RECORD_MODE) recordStream('decision', validatedOutput);
 
+        void tryNotifyM4Decision(validatedOutput);
+
         if (USE_M2_SIM) console.log(`🤖 [M2 SIM] Executing actions: ${validatedOutput.actions.join(', ')}`);
         
         // Setup timeout for M2 ACK if needed
@@ -149,34 +215,8 @@ app.post('/ack', (req, res) => {
 // ─────────────────────────────────────────────────────────────────────────────
 // 🎮 M4 ENDPOINT: User Override
 // ─────────────────────────────────────────────────────────────────────────────
-app.post('/override', async (req, res) => {
-    const { persona } = req.body;
-    
-    if (DEMO_LOCK && DEMO_SCENE !== 3) {
-        return res.status(403).json({ error: 'Overrides locked in current demo scene' });
-    }
-
-    const now = Date.now();
-    if (now - rateLimit.lastOverride < OVERRIDE_COOLDOWN_MS) {
-        return res.status(429).json({ error: 'Override cooldown active.' });
-    }
-
-    console.log(`\n🚨 [M4] USER OVERRIDE REQUESTED: Switch to -> ${persona}`);
-    if (USE_M4_SIM) console.log(`🤖 [M4 SIM] Telegram message logged: User overrode to ${persona}`);
-
-    heartbeatState.manualOverride = {
-        active: true,
-        persona: persona,
-        setAt: new Date().toISOString(),
-        expiresAfterCycles: 2
-    };
-    
-    rateLimit.lastOverride = now;
-    if (RECORD_MODE) recordStream('override', { persona });
-
-    await performHeartbeatCycle();
-    res.json({ success: true, message: `Overridden to ${persona}`, decision: generateStandardOutputContract() });
-});
+app.post('/override', handleUserOverride);
+app.post('/persona-decision', handleUserOverride);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 🏥 HEALTH DASHBOARD ENDPOINT
@@ -307,6 +347,8 @@ app.listen(PORT, () => {
     if (process.env.STRICT_CONTRACT === 'true') console.log(`🛑 STRICT_CONTRACT: ENABLED (Will reject bad data)`);
     if (RECORD_MODE) console.log(`⏺️ RECORD_MODE: ENABLED`);
     if (REPLAY_MODE) console.log(`▶️ REPLAY_MODE: ENABLED`);
+    if (!ENABLE_M4_PUSH) console.log(`📴 M4 live push: DISABLED (M1+M3 only mode)`);
+    if (ENABLE_M4_PUSH && !USE_M4_SIM) console.log(`📡 M4 live push: ENABLED -> ${M4_API_URL}`);
     
     console.log(`\n🛡️  Fallback Failsafe Mode: ALWAYS ACTIVE\n`);
 });

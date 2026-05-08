@@ -1,0 +1,8 @@
+fastapi==0.95.2
+uvicorn==0.24.0
+python-telegram-bot==20.3
+httpx==0.24.1
+python-dotenv==1.0.1
+apscheduler==3.10.4
+pydantic==1.10.13
+twilio==8.1.0
