@@ -45,6 +45,14 @@ Phantom Mode is an OpenClaw-inspired adaptive system that uses context signals, 
 - Receive user-facing updates/conflicts in Telegram via M4
 - Use override path to send user choice back to M1 (`/override`)
 
+### Telegram Bot (M4)
+
+- **Bot link:** https://t.me/phantom_m4_bot
+- **Important:** Do NOT store the bot token in this repository. Keep the token secret.
+- **How to configure:** set the token using an environment variable named `TELEGRAM_BOT_TOKEN` or store it in your CI/CD secrets manager.
+- **Local dev:** copy `.env.example` to `.env` and set `TELEGRAM_BOT_TOKEN` there (never commit your `.env`).
+
+
 ## 4. GitHub Repo must include
 
 a. **Project Video Demo** -> Explaining the solution & Walkthrough - **MUST FOR THE EVALUATION**  
